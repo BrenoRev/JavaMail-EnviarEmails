@@ -42,10 +42,16 @@ public class App {
 		System.out.println("Aguarde enquanto enviamos o seu email...");
 		
 		// Enviar com HTML
-		sendEmail.enviarEmail(true);
+		//sendEmail.enviarEmail(true);
 		
 		// Enviar sem HTML
-		sendEmail.enviarEmail(false);
+		//sendEmail.enviarEmail(false);
+		
+		// Enviar Anexo com HTML
+		sendEmail.enviarAnexo();
+		
+		// Enviar Anexo sem HTML
+		//sendEmail.enviarAnexo(false);
 		
 	}
 
