@@ -1,8 +1,6 @@
 package enviando.email.test;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 
 import javax.mail.Address;
@@ -23,7 +21,6 @@ public class AppTest {
 		
 		 final String username = "counterstrikerevgamer@gmail.com";
 		 final String senha = "brenodev123";
-		 List<String> emails = new ArrayList<String>();
 		 
 		try {
 		/* Olhe as configurações do SMTP do email */
@@ -41,6 +38,8 @@ public class AppTest {
 		
 		properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory"); /* Classe socket de conexão ao SMTP */
 		
+		properties.put("mail.smtp.ssl.trust", "*"); /* Cria uma Autenticação SSL */
+		
 		/* Criando o autenticador com login e senha do email que vai enviar as mensagens */
 		Authenticator authenticator = new Authenticator() {
 			@Override
@@ -53,22 +52,19 @@ public class AppTest {
 		Session session = Session.getInstance(properties, authenticator );
 		
 		// Lista de emails destinatarios
-		emails.add("silvabreno462@gmail.com");
-		emails.add("elianemaria8858@gmail.com");
-		emails.add("counterstrikerevgamer@gmail.com");
-		
-		// Passar os emails a receberem a mensagem
-		Address[] toUser = InternetAddress.parse(emails.toString());
+		Address[] toUser = InternetAddress.parse("silvabreno462@gmail.com, elianemaria8858@gmail.com, counterstrikerevgamer@gmail.com");
 		
 		Message message = new MimeMessage(session);
-		InternetAddress remetente = new InternetAddress(username); /* Quem está enviando */
+		InternetAddress remetente = new InternetAddress(username, "Breno Silva"); /* Quem está enviando */
 		message.setFrom(remetente); // De quem
 		message.setRecipients(Message.RecipientType.TO, toUser); // Para quem
 		message.setSubject("Chegou o e-mail enviado com java"); // Assunto do email
 		message.setText("Mensagem enviada agora em: " + LocalDate.now()); // Mensagem do email
-		
 		// Enviar a mensagem
 		Transport.send(message);
+		
+		// TEMPO DE ESPERA PARA NÃO SOBRECARREGAR
+		Thread.sleep(5000);
 		
 		}catch(Exception e) {
 			e.printStackTrace();
