@@ -41,17 +41,17 @@ public class App {
 		objetoEnviarEmail sendEmail = new objetoEnviarEmail(dest, rem, assunto, texto);
 		System.out.println("Aguarde enquanto enviamos o seu email...");
 		
+		
+		// Enviar Anexo com HTML
+		sendEmail.enviarAnexo();
+		
 		// Enviar com HTML
 		//sendEmail.enviarEmail(true);
 		
 		// Enviar sem HTML
 		//sendEmail.enviarEmail(false);
+	
 		
-		// Enviar Anexo com HTML
-		sendEmail.enviarAnexo();
-		
-		// Enviar Anexo sem HTML
-		//sendEmail.enviarAnexo(false);
 		
 	}
 
