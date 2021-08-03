@@ -1,4 +1,4 @@
-# Java Mail, um gerenciador de emails prático
+# Java Mail, Gerenciador de emails prático
 <p> Projeto de automatização de envio de emails com Java </p>
  <p>Ferramentas utilizadas</p>
         <ul>
