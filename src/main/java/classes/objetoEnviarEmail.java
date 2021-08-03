@@ -32,7 +32,7 @@ public class objetoEnviarEmail {
 
 
 
-	public void enviarEmail() {
+	public void enviarEmail(boolean envioHTML) {
 		try {
 			
 			/* Olhe as configurações do SMTP do email */
@@ -76,7 +76,15 @@ public class objetoEnviarEmail {
 			message.setFrom(remetente); // De quem
 			message.setRecipients(Message.RecipientType.TO, toUser); // Para quem
 			message.setSubject(assunto); // Assunto do email
+			
+			// Se a condição for verdadeira, ele vai transformar a mensagem digitada em HTML e enviar
+			if(envioHTML) {
+				message.setContent(mensagem, "text/html; charset=utf-8"); 
+			}
+			// Caso não, a mensagem é enviada da forma que foi escrita.
+			else {
 			message.setText(mensagem); // Mensagem do email
+			}
 			// Enviar a mensagem
 			Transport.send(message);
 
